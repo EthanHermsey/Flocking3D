@@ -1,0 +1,28 @@
+
+uniform sampler2D sprite;
+uniform sampler2D accTex;
+uniform sampler2D velTex;
+uniform float radius;
+uniform float maxForce;
+uniform float maxSpeed;
+
+varying float dist;
+varying vec2 lUv;
+
+void main() {
+    
+    vec4 color = vec4(0.1, 0.6, 0.9, 1.0);
+    vec4 darkcolor = vec4(0.05, 0.3, 0.45, 1.0);
+
+    vec4 spriteTexture = texture2D( sprite,  gl_PointCoord );
+    vec3 acc = texture2D( accTex,  lUv ).rgb;
+    vec3 vel = texture2D( velTex,  lUv ).rgb;
+
+    color = mix(darkcolor, color, length(vel) / maxSpeed);
+
+    if (spriteTexture.a < 0.2 || dist > radius){
+        discard;
+    } else {
+        gl_FragColor = spriteTexture * color;
+    }
+}

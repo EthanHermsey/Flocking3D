@@ -1,0 +1,13 @@
+html, body {
+  background: black;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+img{
+  position: fixed;
+  top: calc(50vh - 125px);
+  left: calc(50vw - 125px);
+}

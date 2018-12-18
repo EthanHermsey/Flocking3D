@@ -2,7 +2,6 @@
 uniform sampler2D sprite;
 uniform sampler2D accTex;
 uniform sampler2D velTex;
-uniform float radius;
 uniform float maxForce;
 uniform float maxSpeed;
 
@@ -20,7 +19,7 @@ void main() {
 
     color = mix(darkcolor, color, length(vel) / maxSpeed);
 
-    if (spriteTexture.a < 0.2 || dist > radius){
+    if (spriteTexture.a < 0.2){
         discard;
     } else {
         gl_FragColor = spriteTexture * color;

@@ -201,7 +201,7 @@ function initPositionsAndVelocities(){
 			random(-1, 1),
 			random(-1, 1),
 			random(-1, 1)
-		).setLength(objRadius);
+		).setLength( random(objRadius) );
 		startPositions[ind] = sp.x;
 		startPositions[ind + 1] = sp.y;
 		startPositions[ind + 2] = sp.z;

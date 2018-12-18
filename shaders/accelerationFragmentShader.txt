@@ -64,13 +64,13 @@ vec3 flock(in vec3 pos, in vec3 vel){
             vec3 nVel = texture2D( source[1], nUv ).rgb;
             float d = distance(pos, nPos);
 
-            if (d > 1.0 && d < perceptionRadius * 2.0){
+            if (d > 0.1 && d < perceptionRadius * 2.0){
                 cohereacc += nPos;
 
                 cohereCount += 1.0;
             }
                 
-            if (d > 1.0 && d < perceptionRadius){
+            if (d > 0.1 && d < perceptionRadius){
                 vec3 diff = vec3(pos) - nPos;
                 diff /= d*d;
                 separateacc += diff;

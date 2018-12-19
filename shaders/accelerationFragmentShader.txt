@@ -1,5 +1,6 @@
 
 uniform sampler2D source[2];
+uniform float delta;
 uniform float perceptionRadius;
 uniform float maxSpeed;
 uniform float maxForce;
@@ -83,9 +84,9 @@ vec3 flock(in vec3 pos, in vec3 vel){
     }
 
     if (count > 0.0){
-        acc += align(alignacc, vel, count);
-        acc += separate(separateacc, vel, count);
-        acc += cohere(cohereacc, pos, vel, cohereCount);
+        acc += align(alignacc, vel, count) * delta;
+        acc += separate(separateacc, vel, count) * delta;
+        acc += cohere(cohereacc, pos, vel, cohereCount) * delta;
     }
 
     return acc;

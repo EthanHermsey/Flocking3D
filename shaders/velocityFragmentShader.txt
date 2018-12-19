@@ -9,7 +9,7 @@ void main() {
     vec3 vel = texture2D( source[0], vUv ).rgb;
     vec3 acceleration = texture2D( source[1], vUv ).rgb;
     
-    vec3 newVel = clamp(vel + acceleration, -maxSpeed * delta, maxSpeed * delta);
+    vec3 newVel = clamp(vel + acceleration, -maxSpeed, maxSpeed);
 
     gl_FragColor = vec4(newVel, 1.0);
 }

@@ -2,7 +2,7 @@
 
 class LabelledSlider{
 
-	constructor(min, max, cur, step, label){
+	constructor(min, max, cur, step, label, tooltip){
 		this.labeltxt = label;
 		this.startValue = cur;
 		this.lastClick = 0;
@@ -18,8 +18,10 @@ class LabelledSlider{
 			this.lastClick = millis();
 		})
 		this.label = createDiv(this.labeltxt + this.slider.value());
-		this.label.style('color', '#fcfcfc')
-		this.label.style('font-size', '80%')
+		this.label.style('color', '#fcfcfc');
+		this.label.style('font-size', '80%');
+
+		if (tooltip) this.slider.elt.title = tooltip;
 	}
 
 	position(x,y){

@@ -219,19 +219,19 @@ function initPositionsAndVelocities(){
 
 function initSliders(){
 
-	perceptionSlider = new LabelledSlider(1, 500, 250, 1, 'Perception range: ');
+	perceptionSlider = new LabelledSlider(1, 500, 250, 1, 'Perception range: ', 'The range of perception per particle');
 	perceptionSlider.position(10, 20);
 
-	steeringStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Steering strength: ');
+	steeringStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Steering strength: ', 'The maximum force that is applied to steer the particle');
 	steeringStrengthSlider.position(10, 70);
 
-	alignStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Align strength: ');
+	alignStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Align strength: ', "The maximum force that is applied to align the direction of the particle with it's neighboring particles");
 	alignStrengthSlider.position(10, 120);
 
-	separationStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Separation strength: ');
+	separationStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Separation strength: ', "The maximum force that is applied to steer away from neighboring particles");
 	separationStrengthSlider.position(10, 170);
 
-	cohesionStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Cohesion strength: ');
+	cohesionStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Cohesion strength: ', "The maximum force that is applied to steer towards neigboring partricles");
 	cohesionStrengthSlider.position(10, 220);
 }
 

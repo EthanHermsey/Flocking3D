@@ -198,10 +198,10 @@ function initPositionsAndVelocities(){
 	for (var i = 0; i < nodecount; i++){
 		let ind = i * 3
 		let sp = new THREE.Vector3(
-			random(-1, 1),
-			random(-1, 1),
-			random(-1, 1)
-		).setLength( random(objRadius) );
+			random(-1, 1) * objRadius,
+			random(-1, 1) * objRadius,
+			random(-1, 1) * objRadius
+		)
 		startPositions[ind] = sp.x;
 		startPositions[ind + 1] = sp.y;
 		startPositions[ind + 2] = sp.z;

@@ -51,11 +51,12 @@ vec3 flock(in vec3 pos, in vec3 vel){
 
     float cohereCount = 0.0;
     float count = 0.0;
+    float pixelSize = 1.0 / #DIM#;
 
     for (float x = 0.0; x < #DIM#; x += 1.0){
         for (float y = 0.0; y < #DIM#; y += 1.0){
             
-            vec2 nUv = vec2(x / #DIM#, y / #DIM#);
+            vec2 nUv = vec2(x * pixelSize, y * pixelSize);
             vec3 nPos = texture2D( source[0], nUv ).rgb;
             vec3 nVel = texture2D( source[1], nUv ).rgb;
             float d = distance(pos, nPos);

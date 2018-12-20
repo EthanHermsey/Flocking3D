@@ -65,13 +65,18 @@ vec3 flock(in vec3 pos, in vec3 vel){
             vec3 nPos = texture2D( source[0], nUv ).rgb;
             vec3 nVel = texture2D( source[1], nUv ).rgb;
             float d = distance(pos, nPos);
+            float dia = radius * 2.0;
 
             if (d > 0.1 ){ 
                 if (d < perceptionRadius * 2.0){
                     cohereacc += nPos;
                     cohereCount += 1.0;
+
+                } else if (d > dia - perceptionRadius * 2.0){
+                    cohereacc += nPos * -(radius/length(nPos));
+                    cohereCount += 1.0;
                 }
-                
+
                 if (d < perceptionRadius){
                     vec3 diff = vec3(pos) - nPos;
                     diff /= d*d;
@@ -80,15 +85,24 @@ vec3 flock(in vec3 pos, in vec3 vel){
                     alignacc += nVel;
                     
                     count += 1.0;
+
+                } else if (d > dia - perceptionRadius){
+                    vec3 diff = vec3(pos) - nPos * -(radius/length(nPos));
+                    diff /= d*d;
+                    separateacc += diff;
+
+                    alignacc += nVel;
+
+                    count += 1.0;
                 }
             }
         }
     }
 
     if (count > 0.0){
-        acc += align(alignacc, vel, count) * delta;
-        acc += separate(separateacc, vel, count) * delta;
-        acc += cohere(cohereacc, pos, vel, cohereCount) * delta;
+        acc += align(alignacc, vel, count);// * delta;
+        acc += separate(separateacc, vel, count);// * delta;
+        acc += cohere(cohereacc, pos, vel, cohereCount);// * delta;
     }
 
     return acc;

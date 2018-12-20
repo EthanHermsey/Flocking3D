@@ -15,7 +15,7 @@ let nodeSize = 2;
 let maxNodeSpeed = 4;
 
 //texture engine
-let textureDim = 160;
+let textureDim = 130;
 let nodecount = textureDim * textureDim;
 let positions;
 let velocities;

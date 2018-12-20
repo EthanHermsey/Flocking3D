@@ -86,7 +86,7 @@ function setup() {
 
 
 function draw() {
-	if (frameCount != 1) delta = 50 / frameRate();
+	if (frameCount != 1) delta = 60 / frameRate();
 	
 	update();
 	moveCamera();

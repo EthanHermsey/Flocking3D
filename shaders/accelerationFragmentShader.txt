@@ -14,23 +14,19 @@ varying vec2 vUv;
 vec3 align(in vec3 acc, in vec3 vel, in float count){
     
     acc /= count;
-    acc = normalize(acc);
-    acc *= maxSpeed;
+    acc = normalize(acc) * maxSpeed;
     acc -= vel;
     acc = clamp(acc, -maxForce, maxForce);
-    acc *= alignStrength;
-    
+
     return acc;
 }
 
 vec3 separate(in vec3 acc, in vec3 vel, in float count){
     
     acc /= count;
-    acc = normalize(acc);
-    acc *= maxSpeed;
+    acc = normalize(acc) * maxSpeed;
     acc -= vel;
     acc = clamp(acc, -maxForce, maxForce);
-    acc *= separateStrength;
         
     return acc;
 }
@@ -39,11 +35,9 @@ vec3 cohere(in vec3 acc, in vec3 pos, in vec3 vel, in float count){
 
     acc /= count;
     acc -= pos;
-    acc = normalize(acc);
-    acc *= maxSpeed;
+    acc = normalize(acc) * maxSpeed;
     acc -= vel;
     acc = clamp(acc, -maxForce, maxForce);
-    acc *= cohereStrength;
         
     return acc;
 }
@@ -67,7 +61,7 @@ vec3 flock(in vec3 pos, in vec3 vel){
             float d = distance(pos, nPos);
             float dia = radius * 2.0;
 
-            if (d > 0.1 ){ 
+            if (d > 0.0){ 
                 if (d < perceptionRadius * 2.0){
                     cohereacc += nPos;
                     cohereCount += 1.0;
@@ -100,9 +94,9 @@ vec3 flock(in vec3 pos, in vec3 vel){
     }
 
     if (count > 0.0){
-        acc += align(alignacc, vel, count);// * delta;
-        acc += separate(separateacc, vel, count);// * delta;
-        acc += cohere(cohereacc, pos, vel, cohereCount);// * delta;
+        acc += align(alignacc, vel, count) * alignStrength * delta;
+        acc += separate(separateacc, vel, count) * separateStrength * delta;
+        acc += cohere(cohereacc, pos, vel, cohereCount) * cohereStrength * delta;
     }
 
     return acc;

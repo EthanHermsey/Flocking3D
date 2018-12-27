@@ -56,9 +56,7 @@ class Engine{
                 cohereStrength: {value: ''}
             },
             vertexShader: vertex,
-            fragmentShader: fragment,
-            transparent: true,
-            blending: THREE.AdditiveBlending
+            fragmentShader: fragment
         });
     }
 

@@ -11,12 +11,19 @@ uniform float cohereStrength;
 
 varying vec2 vUv;
 
+vec3 limit(in vec3 acc, in float max){
+    if (length(acc) > max){
+        return normalize(acc) * max;
+    }
+    return acc;
+}
+
 vec3 align(in vec3 acc, in vec3 vel, in float count){
     
     acc /= count;
     acc = normalize(acc) * maxSpeed;
     acc -= vel;
-    acc = clamp(acc, -maxForce, maxForce);
+    acc = limit(acc, maxForce);
 
     return acc;
 }
@@ -26,7 +33,7 @@ vec3 separate(in vec3 acc, in vec3 vel, in float count){
     acc /= count;
     acc = normalize(acc) * maxSpeed;
     acc -= vel;
-    acc = clamp(acc, -maxForce, maxForce);
+    acc = limit(acc, maxForce);
         
     return acc;
 }
@@ -37,7 +44,7 @@ vec3 cohere(in vec3 acc, in vec3 pos, in vec3 vel, in float count){
     acc -= pos;
     acc = normalize(acc) * maxSpeed;
     acc -= vel;
-    acc = clamp(acc, -maxForce, maxForce);
+    acc = limit(acc, maxForce);
         
     return acc;
 }

@@ -15,7 +15,7 @@ let nodeSize = 2;
 let maxNodeSpeed = 4;
 
 //texture engine
-let textureDim = 130;
+let textureDim = 128;
 let nodecount = textureDim * textureDim;
 let positions;
 let velocities;
@@ -198,10 +198,10 @@ function initPositionsAndVelocities(){
 	for (var i = 0; i < nodecount; i++){
 		let ind = i * 3
 		let sp = new THREE.Vector3(
-			random(-1, 1) * objRadius,
-			random(-1, 1) * objRadius,
-			random(-1, 1) * objRadius
-		)
+			random(-1, 1),
+			random(-1, 1),
+			random(-1, 1)
+		).setLength( random(objRadius) );
 		startPositions[ind] = sp.x;
 		startPositions[ind + 1] = sp.y;
 		startPositions[ind + 2] = sp.z;
@@ -219,7 +219,7 @@ function initPositionsAndVelocities(){
 
 function initSliders(){
 
-	perceptionSlider = new LabelledSlider(1, 500, 250, 1, 'Perception range: ', 'The range of perception per particle');
+	perceptionSlider = new LabelledSlider(1, 250, 100, 1, 'Perception range: ', 'The range of perception per particle');
 	perceptionSlider.position(10, 20);
 
 	steeringStrengthSlider = new LabelledSlider(0, 2, 1, 0.01, 'Steering strength: ', 'The maximum force that is applied to steer the particle');
@@ -240,9 +240,10 @@ function initPointObject(){
 	let pointsgeo = new THREE.BufferGeometry();
 	
 	let luv = [];
+	let pixelSize = 1 / textureDim;
 	for (let x = 0; x < textureDim; x++){
 		for (let y = 0; y < textureDim; y++){
-			luv.push( x / textureDim, y / textureDim);
+			luv.push( x * pixelSize, y  * pixelSize);
 		}
 	}
 

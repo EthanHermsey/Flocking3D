@@ -102,9 +102,9 @@ vec3 flock(in vec3 pos, in vec3 vel){
     }
 
     if (count > 0.0){
-        acc += align(alignacc, vel, count) * alignStrength * delta;
-        acc += separate(separateacc, vel, count) * separateStrength * delta;
-        acc += cohere(cohereacc, pos, vel, cohereCount) * cohereStrength * delta;
+        acc += align(alignacc, vel, count) * alignStrength;
+        acc += separate(separateacc, vel, count) * separateStrength;
+        acc += cohere(cohereacc, pos, vel, cohereCount) * cohereStrength;
     }
 
     return acc;

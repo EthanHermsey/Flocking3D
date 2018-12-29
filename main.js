@@ -11,7 +11,7 @@ let points;
 let objRadius = 1200;
 
 //boid values
-let nodeSize = 2;
+let nodeSize = 3;
 let maxNodeSpeed = 4;
 
 //texture engine
@@ -151,6 +151,7 @@ function update(){
 	points.material.uniforms.posTex.value =  positions.texture;
 	points.material.uniforms.velTex.value =  velocities.texture;
 	points.material.uniforms.accTex.value =  accelerations.texture;
+	points.material.uniforms.delta.value =  delta;
 	points.material.uniforms.maxForce.value = steeringStrengthSlider.value();
 }
 
@@ -255,6 +256,7 @@ function initPointObject(){
 			size: {value: nodeSize},
 			radius: {value: objRadius},
 			maxSpeed: {value: maxNodeSpeed},
+			delta: {value: delta},
 			maxForce: {value: steeringStrengthSlider.value()},
 			posTex: {value: positions.texture},
 			velTex: {value: velocities.texture},

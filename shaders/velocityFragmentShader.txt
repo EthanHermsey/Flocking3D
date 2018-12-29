@@ -1,7 +1,6 @@
 
 uniform sampler2D source[2];
 uniform float maxSpeed;
-uniform float delta;
 
 varying vec2 vUv;
 

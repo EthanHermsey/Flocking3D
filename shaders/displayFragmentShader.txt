@@ -10,14 +10,14 @@ varying vec2 lUv;
 
 void main() {
     
-    vec4 color = vec4(0.1, 0.6, 0.9, 1.0);
-    vec4 darkcolor = vec4(0.05, 0.3, 0.45, 1.0);
-
     vec4 spriteTexture = texture2D( sprite,  gl_PointCoord );
     vec3 acc = texture2D( accTex,  lUv ).rgb;
     vec3 vel = texture2D( velTex,  lUv ).rgb;
+    
+    vec4 darkcolor = vec4(0.05, 0.2, 0.4, 1.0) * smoothstep(-maxSpeed*0.5, maxSpeed*0.7, length(vel)) * smoothstep(maxSpeed*0.3, maxSpeed*0.6, length(vel));
+    vec4 lightcolor = vec4(0.1, 0.6, 0.9, 1.0) * smoothstep(maxSpeed*0.8, maxSpeed, length(vel));
 
-    color = mix(darkcolor, color, length(vel) / maxSpeed);
+    vec4 color = darkcolor + lightcolor;
 
     if (spriteTexture.a < 0.2){
         discard;

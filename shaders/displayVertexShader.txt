@@ -2,9 +2,9 @@
 attribute vec2 luv;
 
 uniform float size;
-uniform float maxSpeed;
+uniform float maxForce;
 uniform sampler2D posTex;
-uniform sampler2D velTex;
+uniform sampler2D accTex;
 
 varying float dist;
 varying vec2 lUv;
@@ -15,12 +15,12 @@ float rand(vec2 co){
 
 void main() {
     vec3 newPos = texture2D( posTex, luv ).rgb;
-    vec3 vel = texture2D( velTex, luv ).rgb;
+    vec3 acc = texture2D( accTex, luv ).rgb;
 
     lUv = luv;
     dist = distance( newPos, vec3(0,0,0));
     
-    gl_PointSize = size + (size * rand(vec2(newPos[0], newPos[2])));
+    gl_PointSize = size * 0.5 + (size * 0.5 * mix(maxForce * 0.1, maxForce, length(acc)));
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0 );
 }

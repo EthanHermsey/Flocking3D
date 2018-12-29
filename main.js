@@ -11,7 +11,7 @@ let points;
 let objRadius = 1200;
 
 //boid values
-let nodeSize = 3;
+let nodeSize = 4;
 let maxNodeSpeed = 4;
 
 //texture engine

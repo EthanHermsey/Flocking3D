@@ -20,7 +20,7 @@ void main() {
     lUv = luv;
     dist = distance( newPos, vec3(0,0,0));
     
-    gl_PointSize = size * 0.5 + (size * 0.5 * mix(maxForce * 0.1, maxForce, length(acc)));
+    gl_PointSize = size * 0.7 + (size * 0.5 * mix(maxForce * 0.1, maxForce, length(acc)));
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0 );
 }

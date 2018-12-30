@@ -74,11 +74,7 @@ vec3 flock(in vec3 pos, in vec3 vel){
                     cohereacc += nPos;
                     cohereCount += 1.0;
 
-                } else if (d > dia - perceptionRadius * 2.0){
-                    cohereacc += nPos * -(radius/length(nPos));
-                    cohereCount += 1.0;
                 }
-
                 if (d < perceptionRadius){
                     vec3 diff = vec3(pos) - nPos;
                     diff /= d*d;
@@ -88,14 +84,6 @@ vec3 flock(in vec3 pos, in vec3 vel){
                     
                     count += 1.0;
 
-                } else if (d > dia - perceptionRadius){
-                    vec3 diff = vec3(pos) - nPos * -(radius/length(nPos));
-                    diff /= d*d;
-                    separateacc += diff;
-
-                    alignacc += nVel;
-
-                    count += 1.0;
                 }
             }
         }

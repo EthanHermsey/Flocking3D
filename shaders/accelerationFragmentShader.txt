@@ -98,11 +98,20 @@ vec3 flock(in vec3 pos, in vec3 vel){
     return acc;
 }
 
+vec3 returnEdge(in vec3 pos){
+    vec3 v = vec3(0);
+    if (length(pos) > radius * 0.85){
+        v += normalize(pos) * -0.5;
+    }
+    return v;
+}
+
 void main() {
     vec3 pos = texture2D( source[0], vUv ).rgb;
     vec3 vel = texture2D( source[1], vUv ).rgb;
 
     vec3 acceleration = flock(pos, vel);
+    acceleration += returnEdge(pos);
 
     gl_FragColor = vec4(acceleration, 1.0);
     

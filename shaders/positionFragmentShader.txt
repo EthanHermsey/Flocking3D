@@ -2,20 +2,10 @@ varying vec2 vUv;
 uniform sampler2D source[2];
 uniform float radius;
 
-vec3 wrapSphere(in vec3 pos){
-    if(distance(pos, vec3(0.0)) > radius){
-        pos = normalize(pos);
-        pos *= -radius;
-    }
-    return pos;
-}
-
 void main() {
     vec3 pos = texture2D( source[0], vUv ).rgb;
     vec3 vel = texture2D( source[1], vUv ).rgb;
     vec3 newPos = (pos + vel);
-
-    newPos = wrapSphere( newPos );
 
     gl_FragColor = vec4(newPos, 1.0);
 }

@@ -130,7 +130,6 @@ function windowResized(){
 
 
 
-
 function update(){
 
 	let accelerationsBuffer = engine.newRenderTarget();

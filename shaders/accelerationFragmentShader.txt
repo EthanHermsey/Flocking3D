@@ -101,7 +101,7 @@ vec3 flock(in vec3 pos, in vec3 vel){
 vec3 returnEdge(in vec3 pos){
     vec3 v = vec3(0);
     if (length(pos) > radius * 0.85){
-        v += normalize(pos) * -0.5;
+        v += normalize(pos) * -0.8;
     }
     return v;
 }
